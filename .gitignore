@@ -1,0 +1,11 @@
+### beego 生成的路由文件 ###
+/routers/commentsRouter_*.go
+
+### MacOS ###
+.DS_Store
+
+### Goland ###
+.idea
+
+### VS Code ###
+.vscode
