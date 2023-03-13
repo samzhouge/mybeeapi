@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -34,7 +33,7 @@ func main() {
 	var (
 		client *mongo.Client
 		err    error
-		//cond   *FindByJobName
+		cond   FindByJobName
 		cursor *mongo.Cursor
 		record *LogRecord
 	)
@@ -54,16 +53,16 @@ func main() {
 	collect := database.Collection("log")
 
 	// 4.过滤，按照jobName=job10过滤，找出2条
-	//cond = &FindByJobName{JobName: "job10"} // 相当于{"jobName":"job10"}
-	cond2 := bson.M{
-		"jobName": "job10",
-	}
+	cond = FindByJobName{JobName: "job10"} // 相当于{"jobName":"job10"}
+	//cond2 := bson.M{
+	//	"jobName": "job10",
+	//}
 
 	// 5.查询
 	findOptions := options.Find()
 	findOptions.SetSkip(0)
 	findOptions.SetLimit(2)
-	if cursor, err = collect.Find(context.TODO(), cond2, findOptions); err != nil {
+	if cursor, err = collect.Find(context.TODO(), cond, findOptions); err != nil {
 		fmt.Println(err)
 		return
 	}
