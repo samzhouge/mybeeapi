@@ -1,18 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-type Student struct {
-	Name string
-	Age  int
+func convertToBin(v int) (result string) {
+	for ; v > 0; v /= 2 {
+		result = strconv.Itoa(v%2) + result
+	}
+	return
 }
 
 func main() {
-	var (
-		a interface{}
-	)
-
-	a = 1
-	fmt.Printf("===%T", a)
-
+	fmt.Println(convertToBin(5))
+	fmt.Println(convertToBin(13))
+	fmt.Println(fmt.Errorf("%s", "a"))
 }
