@@ -40,4 +40,15 @@ func main() {
 	s2 = append(s2[:3], s2[4:]...)
 	printSlice(s2)
 
+	m := map[string]string{
+		"a": "aa",
+		"b": "bb",
+	}
+
+	if name, ok := m["a"]; ok {
+		fmt.Println(name)
+	} else {
+		fmt.Println("no ok")
+	}
+
 }
